@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "modad:item/durability_upgrade_template"
+  }
+}

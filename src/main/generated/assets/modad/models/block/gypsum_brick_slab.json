@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "modad:block/gypsum_bricks",
+    "side": "modad:block/gypsum_bricks",
+    "top": "modad:block/gypsum_bricks"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "modad:block/sheet_metal_block"
+    }
+  }
+}

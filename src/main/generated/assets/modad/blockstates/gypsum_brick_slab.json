@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "modad:block/gypsum_brick_slab"
+    },
+    "type=double": {
+      "model": "modad:block/gypsum_bricks"
+    },
+    "type=top": {
+      "model": "modad:block/gypsum_brick_slab_top"
+    }
+  }
+}

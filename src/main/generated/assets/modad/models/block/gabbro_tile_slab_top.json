@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "modad:block/gabbro_tiles",
+    "side": "modad:block/gabbro_tiles",
+    "top": "modad:block/gabbro_tiles"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "modad:block/gypsum_tiles",
+    "side": "modad:block/gypsum_tiles",
+    "top": "modad:block/gypsum_tiles"
+  }
+}

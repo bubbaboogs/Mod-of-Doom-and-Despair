@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "modad:block/jadeite_tile_slab"
+    },
+    "type=double": {
+      "model": "modad:block/jadeite_tiles"
+    },
+    "type=top": {
+      "model": "modad:block/jadeite_tile_slab_top"
+    }
+  }
+}
