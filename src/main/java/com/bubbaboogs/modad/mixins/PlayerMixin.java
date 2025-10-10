@@ -25,7 +25,7 @@ abstract public class PlayerMixin extends LivingEntity {
 
     @Inject(method = "handleFallDamage", at = @At("HEAD"), cancellable = true)
     private void botansickleCancelFallDamage(double fallDistance, float damagePerDistance, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
-        if ((Boolean.TRUE.equals(this.getStackInHand(Hand.MAIN_HAND) == ModItems.BOTANSICKLE.getDefaultStack())) && this.fallDistance >= 10)
+        if ((Boolean.TRUE.equals(this.getStackInHand(Hand.MAIN_HAND).isOf(ModItems.BOTANSICKLE))) && this.fallDistance >= 10)
         {
             cir.cancel();
         }
