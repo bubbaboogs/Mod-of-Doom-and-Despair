@@ -56,6 +56,7 @@ public class ModOfDoomAndDespairModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.GRAPPLING_HOOK, Models.HANDHELD);
         itemModelGenerator.register(ModItems.MENDING_STAFF, Models.HANDHELD);
         itemModelGenerator.register(ModItems.BOTANSICKLE, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.ECHO_PASTE, Models.GENERATED);
         injectDisplayScaling(ModItems.BOTANSICKLE, 2.0f);
     }
 

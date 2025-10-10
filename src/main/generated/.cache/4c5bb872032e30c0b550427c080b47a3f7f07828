@@ -44,6 +44,7 @@ eba933f43b235c4da080f04655fcdbe85bd3f7b7 assets/modad/blockstates/sheet_metal_st
 4727b97f403652bd682ae87f22581e875fed3fb8 assets/modad/items/botansickle.json
 637a2f3a334e7e2c59d8a237f65487d663913a73 assets/modad/items/cinquedea.json
 545450319f226f717d6239cb3fb58ca72ae2be7e assets/modad/items/crying_obsidian_hammer.json
+362497bc99cac5ec11be59edda7d6cd3b650ff22 assets/modad/items/echo_paste.json
 053a902460562fd4a6f7527bd0a5753b44af71d2 assets/modad/items/evil_smasher.json
 2b8f49589fab95fdc8495d533b01928841aeee0c assets/modad/items/gabbro.json
 1aeb7f2de1a80489533907d368f8305a8f521226 assets/modad/items/gabbro_brick_slab.json
@@ -196,6 +197,7 @@ b78c9511e43ebcb387e4defb52c182f893dceefa assets/modad/models/block/sheet_metal_s
 7b358a8a15e9860dcd4542086ea2ec7d882aab05 assets/modad/models/item/botansickle.json
 3bbe4ce1e7e0b5cc6e6c14a05b3849c271ded649 assets/modad/models/item/cinquedea.json
 57b7586970a8f6393a748fd532612bc9aa5544f6 assets/modad/models/item/crying_obsidian_hammer.json
+3af1bf49f552c62d91924ea6fffaf60263f070fa assets/modad/models/item/echo_paste.json
 cc7bae274ca0474267b4068f0861ada9c9676a57 assets/modad/models/item/evil_smasher.json
 6ee89c7167a874f96108136c130bd5e78c0617b8 assets/modad/models/item/grappling_hook.json
 5dae854d087683b336fb15b4020170ef38d7e2fc assets/modad/models/item/mycelial_claws.json

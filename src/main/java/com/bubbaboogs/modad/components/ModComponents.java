@@ -7,7 +7,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-public class ModComponents {
+public class ModComponents{
     public static final ComponentType<Integer> EVIL_SMASHER_BOOST = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
             Identifier.of(ModOfDoomAndDespair.MOD_ID, "evil_smasher_boost"),
