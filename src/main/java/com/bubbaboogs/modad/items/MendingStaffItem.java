@@ -19,7 +19,7 @@ public class MendingStaffItem extends Item {
         MenderEntity menderEntity = new MenderEntity(ModEntities.MENDER, world);
         menderEntity.owner = user;
         menderEntity.noClip = true;
-        menderEntity.setPosition(user.getPos());
+        menderEntity.setPosition(user.getEntityPos());
         world.spawnEntity(menderEntity);
         user.getItemCooldownManager().set(user.getStackInHand(hand), 800);
         ItemStack stack = user.getStackInHand(hand);

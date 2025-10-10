@@ -10,5 +10,6 @@ public class ModOfDoomAndDespairDataGenerator implements DataGeneratorEntrypoint
 		pack.addProvider(ModOfDoomAndDespairModelProvider::new);
 		pack.addProvider(ModOfDoomAndDespairBlockTagProvider::new);
 		pack.addProvider(ModOfDoomAndDespairBlockLootTableProvider::new);
+		pack.addProvider(ModOfDoomAndDespairRecipeProvider::new);
 	}
 }

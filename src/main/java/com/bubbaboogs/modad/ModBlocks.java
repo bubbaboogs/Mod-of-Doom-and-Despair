@@ -17,6 +17,9 @@ public class ModBlocks {
 
     //JADEITE
     public static final Block JADEITE = registerStoneBlock("jadeite");
+    public static final Block JADEITE_SLAB = register("jadeite_slab", SlabBlock::new, AbstractBlock.Settings.copyShallow(JADEITE), true);
+    public static final Block JADEITE_STAIRS = registerStairsBlock("jadeite_stairs", JADEITE, true);
+    public static final Block JADEITE_WALL = register("jadeite_wall", WallBlock::new, AbstractBlock.Settings.copyShallow(JADEITE).solid(), true);
     public static final Block JADEITE_BRICKS = register("jadeite_bricks", Block::new, AbstractBlock.Settings.copy(Blocks.STONE_BRICKS),
             true);
     public static final Block JADEITE_TILES = register("jadeite_tiles", Block::new, AbstractBlock.Settings.copy(Blocks.DEEPSLATE_TILES),
@@ -30,6 +33,9 @@ public class ModBlocks {
 
     //GABBRO
     public static final Block GABBRO = registerStoneBlock("gabbro");
+    public static final Block GABBRO_SLAB = register("gabbro_slab", SlabBlock::new, AbstractBlock.Settings.copyShallow(GABBRO), true);
+    public static final Block GABBRO_STAIRS = registerStairsBlock("gabbro_stairs", GABBRO, true);
+    public static final Block GABBRO_WALL = register("gabbro_wall", WallBlock::new, AbstractBlock.Settings.copyShallow(GABBRO).solid(), true);
     public static final Block GABBRO_BRICKS = register("gabbro_bricks", Block::new, AbstractBlock.Settings.copy(Blocks.STONE_BRICKS),
             true);
     public static final Block GABBRO_TILES = register("gabbro_tiles", Block::new, AbstractBlock.Settings.copy(Blocks.DEEPSLATE_TILES),
@@ -46,6 +52,9 @@ public class ModBlocks {
 
     //GYPSUM
     public static final Block GYPSUM = registerStoneBlock("gypsum");
+    public static final Block GYPSUM_SLAB = register("gypsum_slab", SlabBlock::new, AbstractBlock.Settings.copyShallow(GYPSUM), true);
+    public static final Block GYPSUM_STAIRS = registerStairsBlock("gypsum_stairs", GYPSUM, true);
+    public static final Block GYPSUM_WALL = register("gypsum_wall", WallBlock::new, AbstractBlock.Settings.copyShallow(GYPSUM).solid(), true);
     public static final Block GYPSUM_BRICKS = register("gypsum_bricks", Block::new, AbstractBlock.Settings.copy(Blocks.STONE_BRICKS),
             true);
     public static final Block GYPSUM_TILES = register("gypsum_tiles", Block::new, AbstractBlock.Settings.copy(Blocks.DEEPSLATE_TILES),

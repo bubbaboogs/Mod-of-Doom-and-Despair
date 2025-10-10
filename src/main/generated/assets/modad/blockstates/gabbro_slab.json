@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "modad:block/gabbro_slab"
+    },
+    "type=double": {
+      "model": "modad:block/gabbro"
+    },
+    "type=top": {
+      "model": "modad:block/gabbro_slab_top"
+    }
+  }
+}

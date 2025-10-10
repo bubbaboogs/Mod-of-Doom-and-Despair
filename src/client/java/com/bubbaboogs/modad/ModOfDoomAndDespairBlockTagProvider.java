@@ -25,12 +25,15 @@ public class ModOfDoomAndDespairBlockTagProvider extends FabricTagProvider.Fabri
         valueLookupBuilder(BlockTags.WALLS)
                 .add(ModBlocks.JADEITE_BRICK_WALL)
                 .add(ModBlocks.JADEITE_TILE_WALL)
+                .add(ModBlocks.JADEITE_WALL)
 
                 .add(ModBlocks.GABBRO_BRICK_WALL)
                 .add(ModBlocks.GABBRO_TILE_WALL)
+                .add(ModBlocks.GABBRO_WALL)
 
                 .add(ModBlocks.GYPSUM_BRICK_WALL)
                 .add(ModBlocks.GYPSUM_TILE_WALL)
+                .add(ModBlocks.GYPSUM_WALL)
 
                 .add(ModBlocks.SHEET_METAL_WALL)
                 .setReplace(false);
@@ -38,6 +41,7 @@ public class ModOfDoomAndDespairBlockTagProvider extends FabricTagProvider.Fabri
                 .add(ModBlocks.JADEITE)
                 .add(ModBlocks.JADEITE_TILES)
                 .add(ModBlocks.JADEITE_BRICKS)
+                .add(ModBlockFamilies.JADEITE.getVariants().values())
                 .add(ModBlockFamilies.JADEITE_TILE.getVariants().values())
                 .add(ModBlockFamilies.JADEITE_BRICK.getVariants().values())
 
@@ -51,6 +55,7 @@ public class ModOfDoomAndDespairBlockTagProvider extends FabricTagProvider.Fabri
                 .add(ModBlocks.GYPSUM)
                 .add(ModBlocks.GYPSUM_TILES)
                 .add(ModBlocks.GYPSUM_BRICKS)
+                .add(ModBlockFamilies.GYPSUM.getVariants().values())
                 .add(ModBlockFamilies.GYPSUM_TILE.getVariants().values())
                 .add(ModBlockFamilies.GYPSUM_BRICK.getVariants().values())
 

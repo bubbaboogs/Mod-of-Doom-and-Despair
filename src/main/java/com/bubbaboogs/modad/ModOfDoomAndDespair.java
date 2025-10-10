@@ -5,6 +5,7 @@ import com.bubbaboogs.modad.entities.ModEntities;
 import com.bubbaboogs.modad.networking.ModPayloads;
 import com.bubbaboogs.modad.weapons.EvilSmasherEventHandler;
 import com.bubbaboogs.modad.weapons.EvilSmasherItem;
+import com.bubbaboogs.modad.worldgen.biomemodifiers.BiomeModifier;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
@@ -31,5 +32,6 @@ public class ModOfDoomAndDespair implements ModInitializer {
 		ModTimer.register();
 		ModEffects.initialize();
 		ModEvents.initialize();
+		BiomeModifier.init();
 	}
 }

@@ -2,10 +2,13 @@
   "values": [
     "modad:jadeite_brick_wall",
     "modad:jadeite_tile_wall",
+    "modad:jadeite_wall",
     "modad:gabbro_brick_wall",
     "modad:gabbro_tile_wall",
+    "modad:gabbro_wall",
     "modad:gypsum_brick_wall",
     "modad:gypsum_tile_wall",
+    "modad:gypsum_wall",
     "modad:sheet_metal_wall"
   ]
 }

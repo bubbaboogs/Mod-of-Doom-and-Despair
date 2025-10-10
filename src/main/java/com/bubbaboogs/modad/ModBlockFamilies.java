@@ -11,15 +11,15 @@ import java.util.stream.Stream;
 
 public class ModBlockFamilies {
     private static final Map<Block, BlockFamily> BASE_BLOCKS_TO_FAMILIES = Maps.newHashMap();
-    public static final BlockFamily JADEITE = register(ModBlocks.JADEITE).build();
+    public static final BlockFamily JADEITE = register(ModBlocks.JADEITE).slab(ModBlocks.JADEITE_SLAB).stairs(ModBlocks.JADEITE_STAIRS).wall(ModBlocks.JADEITE_WALL).build();
     public static final BlockFamily JADEITE_BRICK = register(ModBlocks.JADEITE_BRICKS).slab(ModBlocks.JADEITE_BRICK_SLAB).stairs(ModBlocks.JADEITE_BRICK_STAIRS).wall(ModBlocks.JADEITE_BRICK_WALL).build();
     public static final BlockFamily JADEITE_TILE = register(ModBlocks.JADEITE_TILES).slab(ModBlocks.JADEITE_TILE_SLAB).stairs(ModBlocks.JADEITE_TILE_STAIRS).wall(ModBlocks.JADEITE_TILE_WALL).build();
 
-    public static final BlockFamily GABBRO = register(ModBlocks.GABBRO).polished(ModBlocks.POLISHED_GABBRO).build();
+    public static final BlockFamily GABBRO = register(ModBlocks.GABBRO).polished(ModBlocks.POLISHED_GABBRO).slab(ModBlocks.GABBRO_SLAB).stairs(ModBlocks.GABBRO_STAIRS).wall(ModBlocks.GABBRO_WALL).build();
     public static final BlockFamily GABBRO_BRICK = register(ModBlocks.GABBRO_BRICKS).slab(ModBlocks.GABBRO_BRICK_SLAB).stairs(ModBlocks.GABBRO_BRICK_STAIRS).wall(ModBlocks.GABBRO_BRICK_WALL).build();
     public static final BlockFamily GABBRO_TILE = register(ModBlocks.GABBRO_TILES).slab(ModBlocks.GABBRO_TILE_SLAB).stairs(ModBlocks.GABBRO_TILE_STAIRS).wall(ModBlocks.GABBRO_TILE_WALL).build();
 
-    public static final BlockFamily GYPSUM = register(ModBlocks.GYPSUM).build();
+    public static final BlockFamily GYPSUM = register(ModBlocks.GYPSUM).slab(ModBlocks.GYPSUM_SLAB).stairs(ModBlocks.GYPSUM_STAIRS).wall(ModBlocks.GYPSUM_WALL).build();
     public static final BlockFamily GYPSUM_BRICK = register(ModBlocks.GYPSUM_BRICKS).slab(ModBlocks.GYPSUM_BRICK_SLAB).stairs(ModBlocks.GYPSUM_BRICK_STAIRS).wall(ModBlocks.GYPSUM_BRICK_WALL).build();
     public static final BlockFamily GYPSUM_TILE = register(ModBlocks.GYPSUM_TILES).slab(ModBlocks.GYPSUM_TILE_SLAB).stairs(ModBlocks.GYPSUM_TILE_STAIRS).wall(ModBlocks.GYPSUM_TILE_WALL).build();
 

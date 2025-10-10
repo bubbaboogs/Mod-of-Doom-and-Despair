@@ -47,8 +47,8 @@ public class CinquedeaEntity extends PersistentProjectileEntity {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
 
-        if (!this.getWorld().isClient()) {
-            ServerWorld serverWorld = (ServerWorld) this.getWorld();
+        if (!this.getEntityWorld().isClient()) {
+            ServerWorld serverWorld = (ServerWorld) this.getEntityWorld();
             entity.damage(serverWorld,
                     this.getDamageSources().thrown(this, this.getOwner()),
                     6.0F);

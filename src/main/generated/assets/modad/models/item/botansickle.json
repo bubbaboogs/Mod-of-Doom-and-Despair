@@ -1,0 +1,76 @@
+{
+  "parent": "minecraft:item/handheld",
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        0.0,
+        90.0,
+        -55.0
+      ],
+      "scale": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "translation": [
+        1.0,
+        4.5,
+        0.5
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0.0,
+        -90.0,
+        55.0
+      ],
+      "scale": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "translation": [
+        1.0,
+        4.5,
+        0.5
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        0.0,
+        90.0,
+        -55.0
+      ],
+      "scale": [
+        1.6,
+        1.6,
+        1.6
+      ],
+      "translation": [
+        0.0,
+        3.0,
+        1.5
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        0.0,
+        -90.0,
+        55.0
+      ],
+      "scale": [
+        1.6,
+        1.6,
+        1.6
+      ],
+      "translation": [
+        0.0,
+        3.0,
+        1.5
+      ]
+    }
+  },
+  "textures": {
+    "layer0": "modad:item/botansickle"
+  }
+}

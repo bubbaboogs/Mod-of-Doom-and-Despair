@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "modad:block/jadeite",
+    "side": "modad:block/jadeite",
+    "top": "modad:block/jadeite"
+  }
+}

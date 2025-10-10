@@ -23,7 +23,7 @@ public class Cinquedea extends Item {
     public ActionResult use(World world, PlayerEntity user, Hand hand){
         ItemStack itemStack = user.getStackInHand(hand);
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.NEUTRAL, 0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
-        if(!world.isClient){
+        if(!world.isClient()){
             CinquedeaEntity cinquedea = new CinquedeaEntity(world, user);
             cinquedea.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, THROW_SPEED, 0f);
             world.spawnEntity(cinquedea);

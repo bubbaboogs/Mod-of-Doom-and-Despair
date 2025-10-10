@@ -4,6 +4,7 @@ import com.bubbaboogs.modad.components.ModComponents;
 import com.bubbaboogs.modad.items.GrapplingHookItem;
 import com.bubbaboogs.modad.items.LifeCrystalItem;
 import com.bubbaboogs.modad.items.MendingStaffItem;
+import com.bubbaboogs.modad.weapons.BotansickleItem;
 import com.bubbaboogs.modad.weapons.EvilSmasherItem;
 import com.bubbaboogs.modad.weapons.MycelialClawsItem;
 import com.bubbaboogs.modad.weapons.TaintedBladeItem;
@@ -45,6 +46,8 @@ public class ModItems {
     public static final Item TAINTED_BLADE = register("tainted_blade", TaintedBladeItem::new, new Item.Settings().sword(new ToolMaterial(null, 350, 2.0f, 9.0f, 15, null), 0, -2.4f).maxDamage(350).rarity(Rarity.UNCOMMON));
     public static final Item MYCELIAL_CLAWS = register("mycelial_claws", MycelialClawsItem::new, new Item.Settings().attributeModifiers(MycelialClawsItem.createAttributeModifiers()).maxDamage(350));
     public static final Item MENDING_STAFF = register("staff_of_mending", MendingStaffItem::new, new Item.Settings().maxDamage(20));
+
+    public static final Item BOTANSICKLE = register("botansickle", BotansickleItem::new, new Item.Settings().sword(BotansickleItem.material, 0, 0).attributeModifiers(BotansickleItem.createAttributeModifiers()));
 
     public static Item LIFE_CRYSTAL_ITEM;
 

@@ -6,18 +6,17 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.command.OrderedRenderCommandQueue;
+import net.minecraft.client.render.entity.EntityRenderManager;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.state.CameraRenderState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustColorTransitionParticleEffect;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.*;
-
 import java.awt.*;
 
 @Environment(EnvType.CLIENT)
@@ -26,16 +25,15 @@ public class GrapplingProjectileRenderer extends EntityRenderer<GrapplingProject
         super(ctx);
     }
 
-    EntityRenderDispatcher entityRenderDispatcher = MinecraftClient.getInstance().getEntityRenderDispatcher();
+    EntityRenderManager entityRenderDispatcher = MinecraftClient.getInstance().getEntityRenderDispatcher();
     private static final Identifier TEXTURE = Identifier.ofVanilla("textures/item/chain.png");
 
     public boolean shouldRender(GrapplingProjectile grapplingProjectile, Frustum frustum, double d, double e, double f) {
-        //return super.shouldRender(grapplingProjectile, frustum, d, e, f) && grapplingProjectile.getPlayerOwner() != null;
-        return true;
+        return super.shouldRender(grapplingProjectile, frustum, d, e, f) && grapplingProjectile.getPlayerOwner() != null;
     }
 
     @Override
-    public void render(GrapplingProjectileEntityRenderState state, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light){
+    public void render(GrapplingProjectileEntityRenderState state, MatrixStack matrices, OrderedRenderCommandQueue queue, CameraRenderState cameraState) {
         spawnChainParticles(state);
     }
     @Override
@@ -98,7 +96,7 @@ public class GrapplingProjectileRenderer extends EntityRenderer<GrapplingProject
         if (state.handPos == null || state.entity == null) return;
 
         Vec3d start = state.handPos;
-        Vec3d end = state.entity.getPos();
+        Vec3d end = state.entity.getEntityPos();
         Vec3d diff = end.subtract(start);
 
         int count = Math.max(2, (int) diff.length() * 4); // particle density

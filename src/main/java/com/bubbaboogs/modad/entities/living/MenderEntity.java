@@ -48,7 +48,7 @@ public class MenderEntity extends MobEntity {
             float healAmount = 4.0F;
             owner.heal(healAmount);
 
-            if (this.getWorld() instanceof ServerWorld serverWorld) {
+            if (this.getEntityWorld() instanceof ServerWorld serverWorld) {
                 for (int i = 0; i < 10; i++) {
                     double vx = (random.nextDouble() - 0.5) * 0.5;
                     double vy = (random.nextDouble() - 0.5) * 0.5;
@@ -63,7 +63,7 @@ public class MenderEntity extends MobEntity {
                 }
             }
 
-            getWorld().playSound(
+            getEntityWorld().playSound(
                     null,
                     getX(), getY(), getZ(),
                     SoundEvents.BLOCK_BEACON_POWER_SELECT,
@@ -72,7 +72,7 @@ public class MenderEntity extends MobEntity {
             );
         }
 
-        if (!this.getWorld().isClient) {
+        if (!this.getEntityWorld().isClient()) {
             if (this.age >= timeToLive) {
                 addDeathParticles();
                 this.discard();

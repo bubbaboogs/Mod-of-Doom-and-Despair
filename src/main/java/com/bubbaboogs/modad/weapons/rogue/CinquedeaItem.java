@@ -51,8 +51,8 @@ public class CinquedeaItem extends Item implements ProjectileItem {
             user.setCurrentHand(hand);
                 if (!isAboutToBreak(stack)) {
                     RegistryEntry<SoundEvent> registryEntry = (RegistryEntry) EnchantmentHelper.getEffect(stack, EnchantmentEffectComponentTypes.TRIDENT_SOUND).orElse(SoundEvents.ITEM_TRIDENT_THROW);
-                    if (!world.isClient) {
-                        stack.damage(1, playerEntity, LivingEntity.getSlotForHand(user.getActiveHand()));
+                    if (!world.isClient()) {
+                        stack.damage(1, playerEntity);
                         CinquedeaEntity tridentEntity = new CinquedeaEntity(world, playerEntity, stack);
                         tridentEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, VELOCITY, 1.0F);
 

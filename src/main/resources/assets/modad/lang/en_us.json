@@ -2,6 +2,9 @@
   "itemGroup.modad": "Mod of Doom and Despair",
 
   "block.modad.jadeite": "Jadeite",
+  "block.modad.jadeite_slab": "Jadeite Slab",
+  "block.modad.jadeite_stairs": "Jadeite Stairs",
+  "block.modad.jadeite_wall": "Jadeite Wall",
   "block.modad.jadeite_bricks": "Jadeite Bricks",
   "block.modad.jadeite_brick_slab": "Jadeite Brick Slab",
   "block.modad.jadeite_brick_stairs": "Jadeite Brick Stairs",
@@ -12,6 +15,9 @@
   "block.modad.jadeite_tile_wall": "Jadeite Tile Wall",
 
   "item.modad.jadeite": "Jadeite",
+  "item.modad.jadeite_slab": "Jadeite Slab",
+  "item.modad.jadeite_stairs": "Jadeite Stairs",
+  "item.modad.jadeite_wall": "Jadeite Wall",
   "item.modad.jadeite_bricks": "Jadeite Bricks",
   "item.modad.jadeite_brick_slab": "Jadeite Brick Slab",
   "item.modad.jadeite_brick_stairs": "Jadeite Brick Stairs",
@@ -22,6 +28,9 @@
   "item.modad.jadeite_tile_wall": "Jadeite Tile Wall",
 
   "block.modad.gabbro": "Gabbro",
+  "block.modad.gabbro_slab": "Gabbro Slab",
+  "block.modad.gabbro_stairs": "Gabbro Stairs",
+  "block.modad.gabbro_wall": "Gabbro Walls",
   "block.modad.polished_gabbro": "Polished Gabbro",
   "block.modad.gabbro_bricks": "Gabbro Bricks",
   "block.modad.gabbro_brick_slab": "Gabbro Brick Slab",
@@ -33,6 +42,9 @@
   "block.modad.gabbro_tile_wall": "Gabbro Tile Wall",
 
   "item.modad.gabbro": "Gabbro",
+  "item.modad.gabbro_slab": "Gabbro Slab",
+  "item.modad.gabbro_stairs": "Gabbro Stairs",
+  "item.modad.gabbro_wall": "Gabbro Walls",
   "item.modad.polished_gabbro": "Polished Gabbro",
   "item.modad.gabbro_bricks": "Gabbro Bricks",
   "item.modad.gabbro_brick_slab": "Gabbro Brick Slab",
@@ -44,6 +56,9 @@
   "item.modad.gabbro_tile_wall": "Gabbro Tile Wall",
 
   "item.modad.gypsum": "Gypsum",
+  "item.modad.gypsum_slab": "Gypsum Slab",
+  "item.modad.gypsum_stairs": "Gypsum Stairs",
+  "item.modad.gypsum_wall": "Gypsum Wall",
   "item.modad.polished_gypsum": "Polished Gypsum",
   "item.modad.gypsum_bricks": "Gypsum Bricks",
   "item.modad.gypsum_brick_slab": "Gypsum Brick Slab",
@@ -55,6 +70,9 @@
   "item.modad.gypsum_tile_wall": "Gypsum Tile Wall",
 
   "block.modad.gypsum": "Gypsum",
+  "block.modad.gypsum_slab": "Gypsum Slab",
+  "block.modad.gypsum_stairs": "Gypsum Stairs",
+  "block.modad.gypsum_wall": "Gypsum Wall",
   "block.modad.polished_gypsum": "Polished Gypsum",
   "block.modad.gypsum_bricks": "Gypsum Bricks",
   "block.modad.gypsum_brick_slab": "Gypsum Brick Slab",

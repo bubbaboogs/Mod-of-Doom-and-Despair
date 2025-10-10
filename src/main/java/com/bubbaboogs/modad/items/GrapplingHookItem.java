@@ -16,7 +16,7 @@ public class GrapplingHookItem extends Item {
     @Override
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         user.swingHand(hand);
-        if (!world.isClient) {
+        if (!world.isClient()) {
             GrapplingProjectile projectile = new GrapplingProjectile(ModEntities.GRAPPLING_PROJECTILE, world);
             projectile.setOwner(user);
             projectile.refreshPositionAndAngles(
