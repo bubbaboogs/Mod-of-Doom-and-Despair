@@ -7,37 +7,36 @@ import com.bubbaboogs.modad.entities.projectile.GildedDaggerEntity;
 import com.bubbaboogs.modad.entities.projectile.GrapplingProjectile;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 
 public class ModEntities {
-    public static final RegistryKey<EntityType<?>> CINQUEDEA_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(ModOfDoomAndDespair.MOD_ID, "cinqueadea_entity"));
-    public static final EntityType<CinquedeaEntity> CINQUEDEA = Registry.register(Registries.ENTITY_TYPE,
-            Identifier.of(ModOfDoomAndDespair.MOD_ID, "cinquedea"),
-            EntityType.Builder.<CinquedeaEntity>create(CinquedeaEntity::new, SpawnGroup.MISC).dimensions(0.5f, 0.5f).build(CINQUEDEA_KEY));
-    public static final RegistryKey<EntityType<?>> GILDED_DAGGER_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(ModOfDoomAndDespair.MOD_ID, "gilded_dagger"));
-    public static final EntityType<GildedDaggerEntity> GILDED_DAGGER = Registry.register(Registries.ENTITY_TYPE,
-            Identifier.of(ModOfDoomAndDespair.MOD_ID, "gilded_dagger"),
-            EntityType.Builder.<GildedDaggerEntity>create(GildedDaggerEntity::new, SpawnGroup.MISC).dimensions(0.5f, 0.5f).build(GILDED_DAGGER_KEY));
+    public static final ResourceKey<EntityType<?>> CINQUEDEA_KEY = ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "cinqueadea_entity"));
+    public static final EntityType<CinquedeaEntity> CINQUEDEA = Registry.register(BuiltInRegistries.ENTITY_TYPE,
+            ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "cinquedea"),
+            EntityType.Builder.<CinquedeaEntity>of(CinquedeaEntity::new, MobCategory.MISC).sized(0.5f, 0.5f).build(CINQUEDEA_KEY));
+    public static final ResourceKey<EntityType<?>> GILDED_DAGGER_KEY = ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "gilded_dagger"));
+    public static final EntityType<GildedDaggerEntity> GILDED_DAGGER = Registry.register(BuiltInRegistries.ENTITY_TYPE,
+            ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "gilded_dagger"),
+            EntityType.Builder.<GildedDaggerEntity>of(GildedDaggerEntity::new, MobCategory.MISC).sized(0.5f, 0.5f).build(GILDED_DAGGER_KEY));
 
-    public static final RegistryKey<EntityType<?>> GRAPPLING_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(ModOfDoomAndDespair.MOD_ID, "grappling_projectile_entity"));
+    public static final ResourceKey<EntityType<?>> GRAPPLING_KEY = ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "grappling_projectile_entity"));
     public static final EntityType<GrapplingProjectile> GRAPPLING_PROJECTILE =
-            Registry.register(Registries.ENTITY_TYPE, Identifier.of(ModOfDoomAndDespair.MOD_ID, "grappling_projectile"),
-                    FabricEntityTypeBuilder.<GrapplingProjectile>create(SpawnGroup.MISC, GrapplingProjectile::new)
+            Registry.register(BuiltInRegistries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "grappling_projectile"),
+                    FabricEntityTypeBuilder.<GrapplingProjectile>create(MobCategory.MISC, GrapplingProjectile::new)
                             .dimensions(EntityDimensions.fixed(0.25F,0.25F))
                             .trackRangeBlocks(64).trackedUpdateRate(10).build(GRAPPLING_KEY));
 
-    public static final RegistryKey<EntityType<?>> MENDER_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(ModOfDoomAndDespair.MOD_ID, "mender_entity"));
-    public static final EntityType<MenderEntity> MENDER = Registry.register(Registries.ENTITY_TYPE, Identifier.of(ModOfDoomAndDespair.MOD_ID, "mender_entity"),
-            EntityType.Builder.create(
-            MenderEntity::new, SpawnGroup.MISC).dimensions(0.5f, 0.5f).build(MENDER_KEY)
+    public static final ResourceKey<EntityType<?>> MENDER_KEY = ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "mender_entity"));
+    public static final EntityType<MenderEntity> MENDER = Registry.register(BuiltInRegistries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "mender_entity"),
+            EntityType.Builder.of(
+            MenderEntity::new, MobCategory.MISC).sized(0.5f, 0.5f).build(MENDER_KEY)
     );
 
 

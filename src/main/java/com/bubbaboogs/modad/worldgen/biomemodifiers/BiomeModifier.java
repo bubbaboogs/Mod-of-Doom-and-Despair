@@ -3,40 +3,40 @@ package com.bubbaboogs.modad.worldgen.biomemodifiers;
 import com.bubbaboogs.modad.ModOfDoomAndDespair;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import java.util.Arrays;
 
 public class BiomeModifier {
 
     public static void init() {
-        addToBiome("jadeite_stone_patch", GenerationStep.Feature.UNDERGROUND_ORES);
-        removeFromBiome(Identifier.of(ModOfDoomAndDespair.MOD_ID, "old_ore_patch"), "no_old_ores", GenerationStep.Feature.UNDERGROUND_ORES);
+        addToBiome("jadeite_stone_patch", GenerationStep.Decoration.UNDERGROUND_ORES);
+        removeFromBiome(ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "old_ore_patch"), "no_old_ores", GenerationStep.Decoration.UNDERGROUND_ORES);
     }
 
-    private static void addToBiome(String featureName, GenerationStep.Feature step) {
-        Identifier id = Identifier.of(ModOfDoomAndDespair.MOD_ID, featureName);
+    private static void addToBiome(String featureName, GenerationStep.Decoration step) {
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, featureName);
 
         BiomeModifications.create(id)
                 .add(
                         ModificationPhase.ADDITIONS,
-                        context -> context.hasTag(TagKey.of(RegistryKeys.BIOME,
-                                Identifier.of(ModOfDoomAndDespair.MOD_ID, "has_structure/jadeite_stone_patch"))),
-                        context -> context.getGenerationSettings().addFeature(step, RegistryKey.of(RegistryKeys.PLACED_FEATURE, id))
+                        context -> context.hasTag(TagKey.create(Registries.BIOME,
+                                ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "has_structure/jadeite_stone_patch"))),
+                        context -> context.getGenerationSettings().addFeature(step, ResourceKey.create(Registries.PLACED_FEATURE, id))
                 );
     }
 
-    private static void removeFromBiome(Identifier feature, String biomeTagName, GenerationStep.Feature step) {
-        Identifier removeId = Identifier.of(ModOfDoomAndDespair.MOD_ID, "remove_" + feature.getPath());
+    private static void removeFromBiome(ResourceLocation feature, String biomeTagName, GenerationStep.Decoration step) {
+        ResourceLocation removeId = ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "remove_" + feature.getPath());
 
         BiomeModifications.create(removeId)
                 .add(
                         ModificationPhase.REMOVALS,
-                        context -> context.hasTag(TagKey.of(RegistryKeys.BIOME, Identifier.of(ModOfDoomAndDespair.MOD_ID, biomeTagName))),
-                        context -> context.getGenerationSettings().removeFeature(step, RegistryKey.of(RegistryKeys.PLACED_FEATURE, feature))
+                        context -> context.hasTag(TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, biomeTagName))),
+                        context -> context.getGenerationSettings().removeFeature(step, ResourceKey.create(Registries.PLACED_FEATURE, feature))
                 );
     }
 

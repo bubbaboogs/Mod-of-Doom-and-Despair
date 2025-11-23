@@ -2,26 +2,26 @@ package com.bubbaboogs.modad.effects;
 
 import com.bubbaboogs.modad.ModAttributes;
 import com.bubbaboogs.modad.ModOfDoomAndDespair;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 
 
-public class MushyEffect extends StatusEffect {
+public class MushyEffect extends MobEffect {
 
     public MushyEffect() {
-        super(StatusEffectCategory.BENEFICIAL, 0x85FFED);
+        super(MobEffectCategory.BENEFICIAL, 0x85FFED);
 
         this.addAttributeModifier(
-                ModAttributes.REGENERATION, Identifier.of(ModOfDoomAndDespair.MOD_ID, "regen"),
+                ModAttributes.REGENERATION, ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "regen"),
                 1,
-                EntityAttributeModifier.Operation.ADD_VALUE
+                AttributeModifier.Operation.ADD_VALUE
         );
         this.addAttributeModifier(
-                EntityAttributes.ARMOR, Identifier.ofVanilla("armor"),
+                Attributes.ARMOR, ResourceLocation.withDefaultNamespace("armor"),
                 3,
-                EntityAttributeModifier.Operation.ADD_VALUE);
+                AttributeModifier.Operation.ADD_VALUE);
     }
 }

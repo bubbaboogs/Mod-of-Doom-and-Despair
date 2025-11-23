@@ -11,36 +11,36 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.hit.HitResult;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 
 public class ModOfDoomAndDespairClient implements ClientModInitializer {
 
-	public static final EntityModelLayer MODEL_MENDER_LAYER = new EntityModelLayer(Identifier.of(ModOfDoomAndDespair.MOD_ID, "mender_entity"), "main");
+	public static final ModelLayerLocation MODEL_MENDER_LAYER = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "mender_entity"), "main");
 	@Override
 	public void onInitializeClient() {
-		BlockRenderLayerMap.putBlock(ModBlocks.PLATFORM, BlockRenderLayer.CUTOUT);
-		BlockRenderLayerMap.putBlock(ModBlocks.SHEET_METAL_GRATE, BlockRenderLayer.CUTOUT);
+		BlockRenderLayerMap.putBlock(ModBlocks.PLATFORM, ChunkSectionLayer.CUTOUT);
+		BlockRenderLayerMap.putBlock(ModBlocks.SHEET_METAL_GRATE, ChunkSectionLayer.CUTOUT);
 		EntityRendererRegistry.register(ModEntities.CINQUEDEA, CinquedeaProjectileRenderer::new);
 		EntityRendererRegistry.register(ModEntities.GRAPPLING_PROJECTILE, GrapplingProjectileRenderer::new);
 		EntityRendererRegistry.register(ModEntities.MENDER, MenderEntityRenderer::new);
-		EntityModelLayerRegistry.registerModelLayer(MODEL_MENDER_LAYER, MenderEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MODEL_MENDER_LAYER, MenderEntityModel::getModelData);
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			if (client.player == null || client.world == null) return;
+			if (client.player == null || client.level == null) return;
 
-			if (client.options.attackKey.isPressed()) {
-				if (client.player.getMainHandStack().getItem() instanceof ClawItem) {
+			if (client.options.keyAttack.isDown()) {
+				if (client.player.getMainHandItem().getItem() instanceof ClawItem) {
 					Entity target = getEntityInCrosshair(client);
-					if (target != null && client.player.getAttackCooldownProgress(0) >= 1.0f) {
-						client.interactionManager.attackEntity(client.player, target);
-						client.player.swingHand(Hand.MAIN_HAND);
+					if (target != null && client.player.getAttackStrengthScale(0) >= 1.0f) {
+						client.gameMode.attack(client.player, target);
+						client.player.swing(InteractionHand.MAIN_HAND);
 					}
                     /*else if (client.player.getAttackCooldownProgress(0) >= 1.0f) {
                         client.player.swingHand(Hand.MAIN_HAND);
@@ -50,9 +50,9 @@ public class ModOfDoomAndDespairClient implements ClientModInitializer {
 		});
 	}
 
-	private Entity getEntityInCrosshair(MinecraftClient client) {
-		if (client.crosshairTarget != null && client.crosshairTarget.getType() == HitResult.Type.ENTITY) {
-			return ((EntityHitResult) client.crosshairTarget).getEntity();
+	private Entity getEntityInCrosshair(Minecraft client) {
+		if (client.hitResult != null && client.hitResult.getType() == HitResult.Type.ENTITY) {
+			return ((EntityHitResult) client.hitResult).getEntity();
 		}
 		return null;
 	}

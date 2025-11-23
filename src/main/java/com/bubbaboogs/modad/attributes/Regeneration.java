@@ -1,7 +1,7 @@
 package com.bubbaboogs.modad.attributes;
 
 import com.bubbaboogs.modad.ModAttributes;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,12 +11,12 @@ public class Regeneration {
     private static final Map<UUID, Float> regenProgress = new HashMap<>();
 
     public static void tick(LivingEntity entity) {
-        if (!entity.isPlayer() || entity.isDead()) return;
+        if (!entity.isAlwaysTicking() || entity.isDeadOrDying()) return;
 
         double regenRate = entity.getAttributeValue(ModAttributes.REGENERATION);
         if (regenRate <= 0) return;
 
-        UUID id = entity.getUuid();
+        UUID id = entity.getUUID();
         float progress = regenProgress.getOrDefault(id, 0f);
 
         progress += regenRate;
@@ -30,6 +30,6 @@ public class Regeneration {
     }
 
     public static void clear(LivingEntity entity) {
-        regenProgress.remove(entity.getUuid());
+        regenProgress.remove(entity.getUUID());
     }
 }

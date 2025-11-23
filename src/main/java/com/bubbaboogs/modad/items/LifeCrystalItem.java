@@ -4,25 +4,25 @@ import com.bubbaboogs.modad.ModBlocks;
 import com.bubbaboogs.modad.ModOfDoomAndDespair;
 import com.bubbaboogs.modad.components.LifeCrystalsUsedComponent;
 import com.bubbaboogs.modad.components.ModCardinalComponents;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class LifeCrystalItem extends BlockItem {
-    public LifeCrystalItem(Settings settings) {
+    public LifeCrystalItem(Properties settings) {
         super(ModBlocks.LIFE_CRYSTAL, settings);
     }
 
     @Override
-    public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        if(!world.isClient()){
-            EntityAttributeInstance health = user.getAttributeInstance(EntityAttributes.MAX_HEALTH);
+    public InteractionResult use(Level world, Player user, InteractionHand hand) {
+        ItemStack itemStack = user.getItemInHand(hand);
+        if(!world.isClientSide()){
+            AttributeInstance health = user.getAttribute(Attributes.MAX_HEALTH);
             LifeCrystalsUsedComponent lifeCrystalsUsedComponent = ModCardinalComponents.LIFE_CRYSTALS_USED.get(user);
             ModOfDoomAndDespair.LOGGER.info(Integer.toString(lifeCrystalsUsedComponent.getValue()));
             if(health != null){
@@ -32,12 +32,12 @@ public class LifeCrystalItem extends BlockItem {
                     ModCardinalComponents.LIFE_CRYSTALS_USED.sync(user);
                 }
                 else{
-                    return ActionResult.PASS;
+                    return InteractionResult.PASS;
                 }
             }
-            itemStack.decrement(1);
+            itemStack.shrink(1);
         }
 
-        return ActionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 }

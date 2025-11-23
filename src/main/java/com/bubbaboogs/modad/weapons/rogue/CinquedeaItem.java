@@ -1,33 +1,36 @@
 package com.bubbaboogs.modad.weapons.rogue;
 
 import com.bubbaboogs.modad.entities.projectile.CinquedeaEntity;
-import net.minecraft.block.BlockState;
-import net.minecraft.component.EnchantmentEffectComponentTypes;
-import net.minecraft.component.type.AttributeModifierSlot;
-import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.component.type.ToolComponent;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ProjectileItem;
-import net.minecraft.item.consume.UseAction;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.*;
-import net.minecraft.world.World;
-
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Position;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.ProjectileItem;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Tool;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import java.util.List;
 
 
@@ -35,73 +38,73 @@ public class CinquedeaItem extends Item implements ProjectileItem {
     public float THROW_SPEED = 0.6F;
     public float VELOCITY = 2f;
 
-    public CinquedeaItem(Item.Settings settings) {
-        super(settings.maxDamage(340));
+    public CinquedeaItem(Item.Properties settings) {
+        super(settings.durability(340));
     }
 
-    public static AttributeModifiersComponent createAttributeModifiers() {
-        return AttributeModifiersComponent.builder().add(EntityAttributes.ATTACK_DAMAGE, new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, 4.0, EntityAttributeModifier.Operation.ADD_VALUE), AttributeModifierSlot.MAINHAND).add(EntityAttributes.ATTACK_SPEED, new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID, -2.9000000953674316, EntityAttributeModifier.Operation.ADD_VALUE), AttributeModifierSlot.MAINHAND).build();
+    public static ItemAttributeModifiers createAttributeModifiers() {
+        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 4.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -2.9000000953674316, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build();
     }
 
     @Override
-    public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        if (user instanceof PlayerEntity playerEntity) {
+    public InteractionResult use(Level world, Player user, InteractionHand hand) {
+        if (user instanceof Player playerEntity) {
             System.out.println("onStoppedUsing triggered");  // Add this line
-            ItemStack stack = user.getStackInHand(hand);
-            user.setCurrentHand(hand);
+            ItemStack stack = user.getItemInHand(hand);
+            user.startUsingItem(hand);
                 if (!isAboutToBreak(stack)) {
-                    RegistryEntry<SoundEvent> registryEntry = (RegistryEntry) EnchantmentHelper.getEffect(stack, EnchantmentEffectComponentTypes.TRIDENT_SOUND).orElse(SoundEvents.ITEM_TRIDENT_THROW);
-                    if (!world.isClient()) {
-                        stack.damage(1, playerEntity);
+                    Holder<SoundEvent> registryEntry = (Holder) EnchantmentHelper.pickHighestLevel(stack, EnchantmentEffectComponents.TRIDENT_SOUND).orElse(SoundEvents.TRIDENT_THROW);
+                    if (!world.isClientSide()) {
+                        stack.hurtWithoutBreaking(1, playerEntity);
                         CinquedeaEntity tridentEntity = new CinquedeaEntity(world, playerEntity, stack);
-                        tridentEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, VELOCITY, 1.0F);
+                        tridentEntity.shootFromRotation(playerEntity, playerEntity.getXRot(), playerEntity.getYRot(), 0.0F, VELOCITY, 1.0F);
 
-                        Vec3d vel = tridentEntity.getVelocity();
-                        float yaw = (float)(MathHelper.atan2(vel.x, vel.z) * (180D / Math.PI));
-                        float pitch = (float)(MathHelper.atan2(vel.y, vel.horizontalLength()) * (180D / Math.PI));
+                        Vec3 vel = tridentEntity.getDeltaMovement();
+                        float yaw = (float)(Mth.atan2(vel.x, vel.z) * (180D / Math.PI));
+                        float pitch = (float)(Mth.atan2(vel.y, vel.horizontalDistance()) * (180D / Math.PI));
 
-                        tridentEntity.setYaw(yaw);
-                        tridentEntity.setPitch(pitch);
+                        tridentEntity.setYRot(yaw);
+                        tridentEntity.setXRot(pitch);
 
-                        world.spawnEntity(tridentEntity);
-                        world.playSoundFromEntity((PlayerEntity) null, tridentEntity, (SoundEvent) registryEntry.value(), SoundCategory.PLAYERS, 1.0F, 1.0F);
-                        user.getItemCooldownManager().set(stack, (int) (THROW_SPEED * 20));
+                        world.addFreshEntity(tridentEntity);
+                        world.playSound((Player) null, tridentEntity, (SoundEvent) registryEntry.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                        user.getCooldowns().addCooldown(stack, (int) (THROW_SPEED * 20));
                     }
 
-                    playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
-                    return ActionResult.SUCCESS;
+                    playerEntity.awardStat(Stats.ITEM_USED.get(this));
+                    return InteractionResult.SUCCESS;
                 }
             }
-        return ActionResult.PASS;
+        return InteractionResult.PASS;
     }
 
     @Override
-    public ProjectileEntity createEntity(World world, Position pos, ItemStack stack, Direction direction) {
-        CinquedeaEntity tridentEntity = new CinquedeaEntity(world, pos.getX(), pos.getY(), pos.getZ(), stack.copyWithCount(1));
-        tridentEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
+    public Projectile asProjectile(Level world, Position pos, ItemStack stack, Direction direction) {
+        CinquedeaEntity tridentEntity = new CinquedeaEntity(world, pos.x(), pos.y(), pos.z(), stack.copyWithCount(1));
+        tridentEntity.pickup = AbstractArrow.Pickup.DISALLOWED;
         return tridentEntity;
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.NONE;
+    public ItemUseAnimation getUseAnimation(ItemStack stack) {
+        return ItemUseAnimation.NONE;
     }
 
-    public static ToolComponent createToolComponent() {
-        return new ToolComponent(List.of(), 1.0F, 2, false);
+    public static Tool createToolComponent() {
+        return new Tool(List.of(), 1.0F, 2, false);
     }
 
-    public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damage(1, attacker, EquipmentSlot.MAINHAND);
+    public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
     }
 
 
-    public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
+    public boolean canMine(BlockState state, Level world, BlockPos pos, Player miner) {
         return !miner.isCreative();
     }
 
     private static boolean isAboutToBreak(ItemStack stack) {
-        boolean aboutToBreak = stack.getDamage() >= stack.getMaxDamage() - 1;
+        boolean aboutToBreak = stack.getDamageValue() >= stack.getMaxDamage() - 1;
         return aboutToBreak;
     }
 }

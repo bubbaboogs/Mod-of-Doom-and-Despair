@@ -1,32 +1,29 @@
 package com.bubbaboogs.modad.client.entities;
 
-import com.bubbaboogs.modad.ModOfDoomAndDespair;
 import com.bubbaboogs.modad.entities.projectile.CinquedeaEntity;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.WorldRenderer;
-import net.minecraft.client.render.command.OrderedRenderCommandQueue;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.item.ItemRenderState;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.state.CameraRenderState;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemDisplayContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RotationAxis;
-import net.minecraft.world.LightType;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.item.ItemStackRenderState;
+import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 
 public class CinquedeaProjectileRenderer extends EntityRenderer<CinquedeaEntity, CinquedeaProjectileEntityRenderState> {
     private final ItemRenderer model;
-    private final EntityRendererFactory.Context context;
+    private final EntityRendererProvider.Context context;
 
-    public CinquedeaProjectileRenderer(EntityRendererFactory.Context ctx) {
+    public CinquedeaProjectileRenderer(EntityRendererProvider.Context ctx) {
         super(ctx);
         this.context = ctx;
-        this.model = MinecraftClient.getInstance().getItemRenderer();
+        this.model = Minecraft.getInstance().getItemRenderer();
     }
 
     @Override
@@ -36,44 +33,44 @@ public class CinquedeaProjectileRenderer extends EntityRenderer<CinquedeaEntity,
 
 
     @Override
-    public void updateRenderState(CinquedeaEntity entity, CinquedeaProjectileEntityRenderState state, float tickProgress) {
-        super.updateRenderState(entity, state, tickProgress);
+    public void extractRenderState(CinquedeaEntity entity, CinquedeaProjectileEntityRenderState state, float tickProgress) {
+        super.extractRenderState(entity, state, tickProgress);
 
-        float yawDiff = MathHelper.wrapDegrees(entity.getYaw() - entity.lastYaw);
-        state.interpolatedYaw = entity.lastYaw + yawDiff * tickProgress;
+        float yawDiff = Mth.wrapDegrees(entity.getYRot() - entity.yRotO);
+        state.interpolatedYaw = entity.yRotO + yawDiff * tickProgress;
 
-        float pitchDiff = MathHelper.wrapDegrees(entity.getPitch() - entity.lastPitch);
-        state.interpolatedPitch = entity.lastPitch + pitchDiff * tickProgress;
+        float pitchDiff = Mth.wrapDegrees(entity.getXRot() - entity.xRotO);
+        state.interpolatedPitch = entity.xRotO + pitchDiff * tickProgress;
 
-        state.item = entity.getDefaultItemStack();
-        ItemRenderState itemStackRenderState = new ItemRenderState();
-        this.context.getItemModelManager().clearAndUpdate(
+        state.item = entity.getDefaultPickupItem();
+        ItemStackRenderState itemStackRenderState = new ItemStackRenderState();
+        this.context.getItemModelResolver().updateForTopItem(
                 itemStackRenderState,
-                entity.getDefaultItemStack(),
+                entity.getDefaultPickupItem(),
                 ItemDisplayContext.GROUND,
-                entity.getEntityWorld(),
+                entity.level(),
                 null,
                 entity.getId()
         );
         state.itemStackRenderState = itemStackRenderState;
-        state.light = WorldRenderer.getLightmapCoordinates(entity.getEntityWorld(), entity.getBlockPos());
+        state.light = LevelRenderer.getLightColor(entity.level(), entity.blockPosition());
 
         // store anything else you need during render
-        state.world = entity.getEntityWorld();
+        state.world = entity.level();
     }
 
     @Override
-    public void render(CinquedeaProjectileEntityRenderState state, MatrixStack matrices, OrderedRenderCommandQueue queue, CameraRenderState cameraState) {
+    public void submit(CinquedeaProjectileEntityRenderState state, PoseStack matrices, SubmitNodeCollector queue, CameraRenderState cameraState) {
         ItemStack stack = state.item;
-        matrices.push();
+        matrices.pushPose();
         matrices.translate(0.0, 0.25, 0.0);
         matrices.scale(0.5f, 0.5f, 0.5f);
 
-        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(state.interpolatedYaw - 90.0f));
-        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(state.interpolatedPitch + 90.0f));
-        state.itemStackRenderState.render(matrices, queue, state.light, OverlayTexture.DEFAULT_UV, 0);
-        matrices.pop();
+        matrices.mulPose(Axis.YP.rotationDegrees(state.interpolatedYaw - 90.0f));
+        matrices.mulPose(Axis.ZP.rotationDegrees(state.interpolatedPitch + 90.0f));
+        state.itemStackRenderState.submit(matrices, queue, state.light, OverlayTexture.NO_OVERLAY, 0);
+        matrices.popPose();
 
-        super.render(state, matrices, queue, cameraState);
+        super.submit(state, matrices, queue, cameraState);
     }
 }

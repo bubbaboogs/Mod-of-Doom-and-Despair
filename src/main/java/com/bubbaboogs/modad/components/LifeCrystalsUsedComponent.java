@@ -1,8 +1,7 @@
 package com.bubbaboogs.modad.components;
 
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.storage.ReadView;
-import net.minecraft.storage.WriteView;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 
 public class LifeCrystalsUsedComponent implements IntComponent, AutoSyncedComponent {
@@ -12,12 +11,12 @@ public class LifeCrystalsUsedComponent implements IntComponent, AutoSyncedCompon
     public void setValue(int value) {this.value = value;}
 
     @Override
-    public void readData(ReadView readView) {
-        this.value = readView.getInt("life_crystals_used", 10);
+    public void readData(ValueInput readView) {
+        this.value = readView.getIntOr("life_crystals_used", 10);
     }
 
     @Override
-    public void writeData(WriteView writeView) {
+    public void writeData(ValueOutput writeView) {
         writeView.putInt("life_crystals_used", this.value);
     }
 }

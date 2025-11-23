@@ -4,13 +4,8 @@ import com.bubbaboogs.modad.components.ModComponents;
 import com.bubbaboogs.modad.entities.ModEntities;
 import com.bubbaboogs.modad.networking.ModPayloads;
 import com.bubbaboogs.modad.weapons.EvilSmasherEventHandler;
-import com.bubbaboogs.modad.weapons.EvilSmasherItem;
 import com.bubbaboogs.modad.worldgen.biomemodifiers.BiomeModifier;
 import net.fabricmc.api.ModInitializer;
-
-import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

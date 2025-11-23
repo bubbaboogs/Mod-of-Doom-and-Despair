@@ -2,39 +2,39 @@ package com.bubbaboogs.modad.entities.projectile;
 
 import com.bubbaboogs.modad.ModItems;
 import com.bubbaboogs.modad.entities.ModEntities;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 
-public class CinquedeaEntity extends PersistentProjectileEntity {
+public class CinquedeaEntity extends AbstractArrow {
 
-    public CinquedeaEntity(World world, LivingEntity owner, ItemStack stack) {
+    public CinquedeaEntity(Level world, LivingEntity owner, ItemStack stack) {
         super(ModEntities.CINQUEDEA, owner, world, stack, null);
     }
 
-    public CinquedeaEntity(World world, PlayerEntity player) {
+    public CinquedeaEntity(Level world, Player player) {
         this(world, player, new ItemStack(ModItems.CINQUEDEA));
     }
 
-    public CinquedeaEntity(World world, double x, double y, double z, ItemStack stack) {
+    public CinquedeaEntity(Level world, double x, double y, double z, ItemStack stack) {
         super(ModEntities.CINQUEDEA, world);
-        this.setPosition(x, y, z);
-        this.setStack(stack);
+        this.setPos(x, y, z);
+        this.setPickupItemStack(stack);
     }
 
-    public CinquedeaEntity(EntityType<? extends CinquedeaEntity> entityType, World world) {
+    public CinquedeaEntity(EntityType<? extends CinquedeaEntity> entityType, Level world) {
         super(entityType, world);
     }
 
     @Override
-    public ItemStack getDefaultItemStack() {
+    public ItemStack getDefaultPickupItem() {
         return new ItemStack(ModItems.CINQUEDEA);
     }
 
@@ -43,30 +43,30 @@ public class CinquedeaEntity extends PersistentProjectileEntity {
     }
 
     @Override
-    protected void onEntityHit(EntityHitResult entityHitResult) {
-        super.onEntityHit(entityHitResult);
+    protected void onHitEntity(EntityHitResult entityHitResult) {
+        super.onHitEntity(entityHitResult);
         Entity entity = entityHitResult.getEntity();
 
-        if (!this.getEntityWorld().isClient()) {
-            ServerWorld serverWorld = (ServerWorld) this.getEntityWorld();
-            entity.damage(serverWorld,
-                    this.getDamageSources().thrown(this, this.getOwner()),
+        if (!this.level().isClientSide()) {
+            ServerLevel serverWorld = (ServerLevel) this.level();
+            entity.hurtServer(serverWorld,
+                    this.damageSources().thrown(this, this.getOwner()),
                     6.0F);
-            serverWorld.sendEntityStatus(this, (byte) 3);
+            serverWorld.broadcastEntityEvent(this, (byte) 3);
             this.discard();
         }
     }
 
     @Override
-    protected void onBlockHit(BlockHitResult result) {
-        super.onBlockHit(result);
+    protected void onHitBlock(BlockHitResult result) {
+        super.onHitBlock(result);
         this.discard();
     }
 
     @Override
-    protected void age() {
-        ++super.age;
-        if (this.age >= 200) {
+    protected void tickDespawn() {
+        ++super.tickCount;
+        if (this.tickCount >= 200) {
             this.discard();
         }
     }

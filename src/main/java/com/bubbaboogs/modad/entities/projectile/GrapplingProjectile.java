@@ -1,43 +1,31 @@
 package com.bubbaboogs.modad.entities.projectile;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MovementType;
-import net.minecraft.entity.ProjectileDeflection;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageTypes;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FishingBobberEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.EntityTypeTags;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class GrapplingProjectile extends ProjectileEntity {
-    public GrapplingProjectile(EntityType<? extends ProjectileEntity> entityType, World world) {
+public class GrapplingProjectile extends Projectile {
+    public GrapplingProjectile(EntityType<? extends Projectile> entityType, Level world) {
         super(entityType, world);
     }
     boolean inGround = false;
 
     @Override
-    protected void initDataTracker(DataTracker.Builder builder) {
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
 
     }
 
     protected void pullHookedEntity(Entity entity) {
         Entity entity2 = this.getOwner();
         if (entity2 != null) {
-            Vec3d vec3d = (new Vec3d(entity2.getX() - this.getX(), entity2.getY() - this.getY(), entity2.getZ() - this.getZ())).multiply(0.1);
-            entity.setVelocity(entity.getVelocity().add(vec3d));
+            Vec3 vec3d = (new Vec3(entity2.getX() - this.getX(), entity2.getY() - this.getY(), entity2.getZ() - this.getZ())).scale(0.1);
+            entity.setDeltaMovement(entity.getDeltaMovement().add(vec3d));
         }
     }
 
@@ -45,13 +33,13 @@ public class GrapplingProjectile extends ProjectileEntity {
     public void tick() {
         super.tick();
         if(!inGround){
-            this.move(MovementType.SELF, this.getVelocity());
-            this.setVelocity(this.getVelocity().multiply(0.99));
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            this.setDeltaMovement(this.getDeltaMovement().scale(0.99));
         }
         else{
-            this.setVelocity(Vec3d.ZERO);
+            this.setDeltaMovement(Vec3.ZERO);
         }
-        if (this.age > 60) {
+        if (this.tickCount > 60) {
             this.discard();
         }
     }
@@ -62,10 +50,10 @@ public class GrapplingProjectile extends ProjectileEntity {
     }
 
     @Nullable
-    public PlayerEntity getPlayerOwner() {
+    public Player getPlayerOwner() {
         Entity entity = this.getOwner();
-        PlayerEntity var10000;
-        if (entity instanceof PlayerEntity playerEntity) {
+        Player var10000;
+        if (entity instanceof Player playerEntity) {
             var10000 = playerEntity;
         } else {
             var10000 = null;

@@ -2,20 +2,20 @@ package com.bubbaboogs.modad.networking;
 
 import com.bubbaboogs.modad.ModOfDoomAndDespair;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 
 public class ModPayloads {
-    public record HandlePlayerDropPayload(int entityId) implements CustomPayload {
-        public static final Identifier GIVE_GLOWING_EFFECT_PAYLOAD_ID = Identifier.of(ModOfDoomAndDespair.MOD_ID, "give_glowing_effect");
-        public static final Id<HandlePlayerDropPayload> ID = new Id<>(GIVE_GLOWING_EFFECT_PAYLOAD_ID);
-        public static final PacketCodec<RegistryByteBuf, HandlePlayerDropPayload> CODEC = PacketCodec.tuple(PacketCodecs.INTEGER, HandlePlayerDropPayload::entityId, HandlePlayerDropPayload::new);
+    public record HandlePlayerDropPayload(int entityId) implements CustomPacketPayload {
+        public static final ResourceLocation GIVE_GLOWING_EFFECT_PAYLOAD_ID = ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "give_glowing_effect");
+        public static final Type<HandlePlayerDropPayload> ID = new Type<>(GIVE_GLOWING_EFFECT_PAYLOAD_ID);
+        public static final StreamCodec<RegistryFriendlyByteBuf, HandlePlayerDropPayload> CODEC = StreamCodec.composite(ByteBufCodecs.INT, HandlePlayerDropPayload::entityId, HandlePlayerDropPayload::new);
 
         @Override
-        public Id<? extends CustomPayload> getId() {
+        public Type<? extends CustomPacketPayload> type() {
             return ID;
         }
     }

@@ -1,56 +1,53 @@
 package com.bubbaboogs.modad.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.EntityShapeContext;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldView;
 
-import java.util.Collections;
-import java.util.Set;
-import java.util.UUID;
-import java.util.WeakHashMap;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class PlatformBlock extends Block {
-    private static final VoxelShape SHAPE = VoxelShapes.cuboid(0, 13.0 / 16.0, 0, 1, 1, 1);
+    private static final VoxelShape SHAPE = Shapes.box(0, 13.0 / 16.0, 0, 1, 1, 1);
 
-    public PlatformBlock(Settings settings) {
-        super(settings.nonOpaque().noCollision());
+    public PlatformBlock(Properties settings) {
+        super(settings.noOcclusion().noCollision());
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (!(context instanceof EntityShapeContext entityContext)) return VoxelShapes.empty();
+    public @NotNull VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        if (!(context instanceof EntityCollisionContext entityContext)) return Shapes.empty();
 
-        if (entityContext.getEntity() instanceof PlayerEntity player) {
+        if (entityContext.getEntity() instanceof Player player) {
             if (context.isAbove(SHAPE, pos, true)) {
                 return SHAPE;
             }
         }
-        return VoxelShapes.empty();
+        return Shapes.empty();
     }
 
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         return true;
     }
 
 
     @Override
-    public boolean isSideInvisible(BlockState state, BlockState adjacentState, Direction direction) {
-        return adjacentState.isOf(this);
+    public boolean skipRendering(BlockState state, BlockState adjacentState, Direction direction) {
+        return adjacentState.is(this);
     }
 }
 

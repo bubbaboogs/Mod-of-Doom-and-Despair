@@ -1,8 +1,9 @@
 package com.bubbaboogs.modad.client.entities;
 
-import net.minecraft.client.render.entity.state.EntityRenderState;
-import net.minecraft.client.render.item.ItemRenderState;
-import net.minecraft.item.ItemStack;
+
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
+import net.minecraft.client.renderer.item.ItemStackRenderState;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public class CinquedeaProjectileEntityRenderState extends EntityRenderState {
@@ -12,11 +13,11 @@ public class CinquedeaProjectileEntityRenderState extends EntityRenderState {
     public float lastPitch;
     public float interpolatedYaw;
     public float interpolatedPitch;
-    public ItemStack item;
+    public net.minecraft.world.item.ItemStack item;
     public int light;
     @Nullable
-    public net.minecraft.world.World world;
-    public ItemRenderState itemStackRenderState;
+    public Level world;
+    public ItemStackRenderState itemStackRenderState;
 
     public float getLastPitch() {
         return lastPitch;

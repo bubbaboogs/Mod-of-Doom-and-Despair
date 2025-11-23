@@ -1,28 +1,28 @@
 package com.bubbaboogs.modad;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.attribute.ClampedEntityAttribute;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.RangedAttribute;
+import net.minecraft.world.entity.player.Player;
 
 public class ModAttributes {
-    public static RegistryEntry<EntityAttribute> REGENERATION;
+    public static Holder<Attribute> REGENERATION;
 
     public static void initialize() {
-        REGENERATION = Registry.registerReference(
-                Registries.ATTRIBUTE,
-                Identifier.of(ModOfDoomAndDespair.MOD_ID, "regen"),
-                new ClampedEntityAttribute("attribute.modad.regen", 0.0, 0.0, 30.0).setTracked(true)
+        REGENERATION = Registry.registerForHolder(
+                BuiltInRegistries.ATTRIBUTE,
+                ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "regen"),
+                new RangedAttribute("attribute.modad.regen", 0.0, 0.0, 30.0).setSyncable(true)
         );
 
         FabricDefaultAttributeRegistry.register(
                 EntityType.PLAYER,
-                PlayerEntity.createPlayerAttributes().add(REGENERATION)
+                Player.createAttributes().add(REGENERATION)
         );
     }
 }
