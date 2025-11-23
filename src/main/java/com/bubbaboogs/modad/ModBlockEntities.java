@@ -21,4 +21,6 @@ public class ModBlockEntities {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, name);
         return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.<T>create(entityFactory, blocks).build());
     }
+
+    public static void init(){}
 }

@@ -43,6 +43,7 @@ public class ModOfDoomAndDespairModelProvider extends FabricModelProvider {
 
         blockStateModelGenerator.family(ModBlocks.SHEET_METAL_BLOCK).slab(ModBlocks.SHEET_METAL_SLAB).wall(ModBlocks.SHEET_METAL_WALL).stairs(ModBlocks.SHEET_METAL_STAIRS);
         blockStateModelGenerator.createTrivialCube(ModBlocks.SHEET_METAL_GRATE);
+        blockStateModelGenerator.createGenericCube(ModBlocks.HARVESTER);
     }
 
     @Override

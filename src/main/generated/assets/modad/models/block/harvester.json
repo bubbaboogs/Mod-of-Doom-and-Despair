@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "modad:block/harvester_down",
+    "east": "modad:block/harvester_east",
+    "north": "modad:block/harvester_north",
+    "particle": "modad:block/harvester_particle",
+    "south": "modad:block/harvester_south",
+    "up": "modad:block/harvester_up",
+    "west": "modad:block/harvester_west"
+  }
+}

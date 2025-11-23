@@ -4,7 +4,9 @@ import com.bubbaboogs.modad.client.entities.CinquedeaProjectileRenderer;
 import com.bubbaboogs.modad.client.entities.GrapplingProjectileRenderer;
 import com.bubbaboogs.modad.client.entities.MenderEntityModel;
 import com.bubbaboogs.modad.client.entities.MenderEntityRenderer;
+import com.bubbaboogs.modad.client.gui.HarvesterScreen;
 import com.bubbaboogs.modad.entities.ModEntities;
+import com.bubbaboogs.modad.gui.ModGUI;
 import com.bubbaboogs.modad.weapons.ClawItem;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -12,6 +14,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.resources.ResourceLocation;
@@ -48,6 +51,8 @@ public class ModOfDoomAndDespairClient implements ClientModInitializer {
 				}
 			}
 		});
+
+        MenuScreens.register(ModGUI.HARVESTER_MENU, HarvesterScreen::new);
 	}
 
 	private Entity getEntityInCrosshair(Minecraft client) {

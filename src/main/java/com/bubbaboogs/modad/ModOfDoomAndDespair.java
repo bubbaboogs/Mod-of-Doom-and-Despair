@@ -2,6 +2,7 @@ package com.bubbaboogs.modad;
 
 import com.bubbaboogs.modad.components.ModComponents;
 import com.bubbaboogs.modad.entities.ModEntities;
+import com.bubbaboogs.modad.gui.ModGUI;
 import com.bubbaboogs.modad.networking.ModPayloads;
 import com.bubbaboogs.modad.weapons.EvilSmasherEventHandler;
 import com.bubbaboogs.modad.worldgen.biomemodifiers.BiomeModifier;
@@ -18,6 +19,7 @@ public class ModOfDoomAndDespair implements ModInitializer {
 	public void onInitialize() {
 		ModBlocks.initialize();
 		//ModBlockFamilies.initialize();
+        ModBlockEntities.init();
 		ModItems.initialize();
 		ModAttributes.initialize();
 		EvilSmasherEventHandler.register();
@@ -27,6 +29,7 @@ public class ModOfDoomAndDespair implements ModInitializer {
 		ModTimer.register();
 		ModEffects.initialize();
 		ModEvents.initialize();
+        ModGUI.initialize();
 		BiomeModifier.init();
 	}
 }

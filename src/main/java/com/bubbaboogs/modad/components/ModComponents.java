@@ -14,6 +14,12 @@ public class ModComponents{
             DataComponentType.<Integer>builder().persistent(Codec.INT).build()
     );
 
+    public static final DataComponentType<Integer> HARVEST_TIME = Registry.register(
+            BuiltInRegistries.DATA_COMPONENT_TYPE,
+            ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "harvest_time"),
+            DataComponentType.<Integer>builder().persistent(Codec.INT).build()
+    );
+
     /*public static final ComponentType<String> BOBBER = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
             Identifier.of(ModOfDoomAndDespair.MOD_ID, "bobber"),
