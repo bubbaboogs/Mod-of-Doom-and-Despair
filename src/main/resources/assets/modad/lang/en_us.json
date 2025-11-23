@@ -111,6 +111,7 @@
   "block.modad.sheet_metal_block": "Sheet Metal Block",
   "block.modad.sheet_metal_grate": "Sheet Metal Grate",
   "block.modad.platform": "Platform",
+  "block.modad.harvester": "Harvester",
 
   "effect.modad.mushy": "Mushy",
   "modad.container.harvester": "Harvester"
