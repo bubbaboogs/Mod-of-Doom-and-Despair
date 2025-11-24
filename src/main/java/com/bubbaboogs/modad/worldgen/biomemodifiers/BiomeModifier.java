@@ -16,6 +16,7 @@ public class BiomeModifier {
         addToBiome("jadeite_stone_patch", GenerationStep.Decoration.UNDERGROUND_ORES);
         addToBiome("gabbro_stone_patch", GenerationStep.Decoration.UNDERGROUND_ORES);
         addToBiome("gypsum_stone_patch", GenerationStep.Decoration.UNDERGROUND_ORES);
+        addToBiome("enderite_patch", GenerationStep.Decoration.UNDERGROUND_ORES);
     }
 
     private static void addToBiome(String featureName, GenerationStep.Decoration step) {
