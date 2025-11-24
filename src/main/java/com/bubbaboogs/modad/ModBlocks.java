@@ -85,8 +85,12 @@ public class ModBlocks {
                     BlockBehaviour.Properties.of().sound(SoundType.GLASS).noOcclusion(),
                     false);
 
+    //SPECIAL BLOCKS
     public static final Block PLATFORM = register("platform", PlatformBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.SCAFFOLDING), true);
-    public static final Block HARVESTER = register("harvester", HarvesterBlock::new, BlockBehaviour.Properties.of(), true);
+    public static final Block HARVESTER = register("harvester", HarvesterBlock::new, BlockBehaviour.Properties.of().strength(10, 900.0f), true);
+
+    //ORES
+    public static final Block ENDERITE_ORE = register("enderite_ore", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_ORE).strength(30.0F, 1200.0F), true);
 
     private static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
         ResourceKey<Block> blockKey = keyOfBlock(name);

@@ -57,5 +57,7 @@ public class ModOfDoomAndDespairBlockLootTableProvider extends FabricBlockLootTa
         dropSelf(ModBlocks.SHEET_METAL_BLOCK);
         dropSelf(ModBlocks.SHEET_METAL_GRATE);
         dropSelf(ModBlocks.PLATFORM);
+        dropSelf(ModBlocks.ENDERITE_ORE);
+        dropSelf(ModBlocks.HARVESTER);
     }
 }

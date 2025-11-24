@@ -14,7 +14,8 @@ public class BiomeModifier {
 
     public static void init() {
         addToBiome("jadeite_stone_patch", GenerationStep.Decoration.UNDERGROUND_ORES);
-        removeFromBiome(ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "old_ore_patch"), "no_old_ores", GenerationStep.Decoration.UNDERGROUND_ORES);
+        addToBiome("gabbro_stone_patch", GenerationStep.Decoration.UNDERGROUND_ORES);
+        addToBiome("gypsum_stone_patch", GenerationStep.Decoration.UNDERGROUND_ORES);
     }
 
     private static void addToBiome(String featureName, GenerationStep.Decoration step) {
@@ -24,7 +25,7 @@ public class BiomeModifier {
                 .add(
                         ModificationPhase.ADDITIONS,
                         context -> context.hasTag(TagKey.create(Registries.BIOME,
-                                ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "has_structure/jadeite_stone_patch"))),
+                                ResourceLocation.fromNamespaceAndPath(ModOfDoomAndDespair.MOD_ID, "has_structure/" + featureName))),
                         context -> context.getGenerationSettings().addFeature(step, ResourceKey.create(Registries.PLACED_FEATURE, id))
                 );
     }

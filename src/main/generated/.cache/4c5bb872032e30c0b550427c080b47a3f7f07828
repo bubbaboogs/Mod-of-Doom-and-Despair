@@ -1,4 +1,5 @@
 // 1.21.10	-999999999-01-01T00:00:00	Mod of Doom and Despair/Model Definitions
+4d91834e8489656505c38571e8c29400cb0db5a7 assets/modad/blockstates/enderite_ore.json
 138cbad6315f4c140b29563c380d19dacbbc08e8 assets/modad/blockstates/gabbro.json
 5f8fcc3d6d06319fd442386a9111eed203570594 assets/modad/blockstates/gabbro_brick_slab.json
 5d9e1bca250ba6f2ba31f1eb60cf294dcd8fe7e8 assets/modad/blockstates/gabbro_brick_stairs.json
@@ -46,6 +47,7 @@ eba933f43b235c4da080f04655fcdbe85bd3f7b7 assets/modad/blockstates/sheet_metal_st
 637a2f3a334e7e2c59d8a237f65487d663913a73 assets/modad/items/cinquedea.json
 545450319f226f717d6239cb3fb58ca72ae2be7e assets/modad/items/crying_obsidian_hammer.json
 362497bc99cac5ec11be59edda7d6cd3b650ff22 assets/modad/items/echo_paste.json
+36a3977d07c016163594f44bdc349f5fc84f19d2 assets/modad/items/enderite_ore.json
 053a902460562fd4a6f7527bd0a5753b44af71d2 assets/modad/items/evil_smasher.json
 2b8f49589fab95fdc8495d533b01928841aeee0c assets/modad/items/gabbro.json
 1aeb7f2de1a80489533907d368f8305a8f521226 assets/modad/items/gabbro_brick_slab.json
@@ -94,6 +96,7 @@ f35029d500c7930fc5e3572578d5ea814adec97d assets/modad/items/sheet_metal_stairs.j
 638c7850739a701a16546f420ae8d1e6a9d492e7 assets/modad/items/sheet_metal_wall.json
 a68a6404ea52d54d45d2914db3d55f80d4e7ec69 assets/modad/items/staff_of_mending.json
 7f7cb69b950c773d38eb5c2b0f43c8384eecdf89 assets/modad/items/tainted_blade.json
+be8c850299c949b060055be9a8c231c38170ed2b assets/modad/models/block/enderite_ore.json
 a619b62684524a246718eedb4869a7b94a642ac7 assets/modad/models/block/gabbro.json
 6afbdd8563d2966408b39ae3a875d5004407c326 assets/modad/models/block/gabbro_brick_slab.json
 a61b365c7964fe6a39bd0365b28a43ef13ee09b5 assets/modad/models/block/gabbro_brick_slab_top.json

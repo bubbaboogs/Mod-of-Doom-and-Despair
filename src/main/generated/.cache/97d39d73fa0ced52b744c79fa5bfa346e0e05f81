@@ -1,3 +1,11 @@
 // 1.21.10	-999999999-01-01T00:00:00	Mod of Doom and Despair/Tags for minecraft:block
-10ae63d81ed9d78ca4a33dbe969b91f2f3bdf8ac data/minecraft/tags/block/mineable/pickaxe.json
+5f4b10acf9ed0a1b4d9470916e1724a04cd4893a data/minecraft/tags/block/incorrect_for_copper_tool.json
+5f4b10acf9ed0a1b4d9470916e1724a04cd4893a data/minecraft/tags/block/incorrect_for_diamond_tool.json
+5f4b10acf9ed0a1b4d9470916e1724a04cd4893a data/minecraft/tags/block/incorrect_for_gold_tool.json
+5f4b10acf9ed0a1b4d9470916e1724a04cd4893a data/minecraft/tags/block/incorrect_for_iron_tool.json
+5f4b10acf9ed0a1b4d9470916e1724a04cd4893a data/minecraft/tags/block/incorrect_for_stone_tool.json
+5f4b10acf9ed0a1b4d9470916e1724a04cd4893a data/minecraft/tags/block/incorrect_for_wooden_tool.json
+84ca845bafb68746e9074b52efd919abc9417a25 data/minecraft/tags/block/mineable/pickaxe.json
+392fc2c4fbcac41ade8945c2d026aa9408179722 data/minecraft/tags/block/needs_diamond_tool.json
+67971cc3dcb8c2ce6d69cf327e49371266be46ca data/minecraft/tags/block/needs_netherite_tool.json
 3342616e00cf23f5d63411037b8dea624c82b648 data/minecraft/tags/block/walls.json

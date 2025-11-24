@@ -96,6 +96,8 @@
   "item.modad.sheet_metal_grate": "Sheet Metal Grate",
   "item.modad.platform": "Platform",
   "item.modad.staff_of_mending": "Staff of Mending",
+  "item.modad.harvester": "Harvester",
+  "item.modad.enderite_ore": "Enderite Ore",
 
   "item.modad.botansickle": "Botansickle",
   "item.modad.echo_paste": "Echo Paste",
@@ -112,6 +114,7 @@
   "block.modad.sheet_metal_grate": "Sheet Metal Grate",
   "block.modad.platform": "Platform",
   "block.modad.harvester": "Harvester",
+  "block.modad.enderite_ore": "Enderite Ore",
 
   "effect.modad.mushy": "Mushy",
   "modad.container.harvester": "Harvester"

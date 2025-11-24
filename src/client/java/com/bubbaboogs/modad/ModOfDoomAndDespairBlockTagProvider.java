@@ -59,6 +59,32 @@ public class ModOfDoomAndDespairBlockTagProvider extends FabricTagProvider.Fabri
                 .add(ModBlocks.SHEET_METAL_BLOCK)
                 .add(ModBlocks.SHEET_METAL_GRATE)
                 .addAll(ModBlockFamilies.SHEET_METAL.getVariants().values())
+                .add(ModBlocks.ENDERITE_ORE)
+                .setReplace(false);
+        valueLookupBuilder(ModTags.NEEDS_NETHERITE_TOOL)
+                .add(ModBlocks.ENDERITE_ORE)
+                .setReplace(false);
+        valueLookupBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(ModBlocks.HARVESTER)
+                .setReplace(false);
+
+        valueLookupBuilder(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
+                .addTag(ModTags.NEEDS_NETHERITE_TOOL)
+                        .setReplace(false);
+        valueLookupBuilder(BlockTags.INCORRECT_FOR_STONE_TOOL)
+                .addTag(ModTags.NEEDS_NETHERITE_TOOL)
+                .setReplace(false);
+        valueLookupBuilder(BlockTags.INCORRECT_FOR_COPPER_TOOL)
+                .addTag(ModTags.NEEDS_NETHERITE_TOOL)
+                .setReplace(false);
+        valueLookupBuilder(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .addTag(ModTags.NEEDS_NETHERITE_TOOL)
+                .setReplace(false);
+        valueLookupBuilder(BlockTags.INCORRECT_FOR_GOLD_TOOL)
+                .addTag(ModTags.NEEDS_NETHERITE_TOOL)
+                .setReplace(false);
+        valueLookupBuilder(BlockTags.INCORRECT_FOR_DIAMOND_TOOL)
+                .addTag(ModTags.NEEDS_NETHERITE_TOOL)
                 .setReplace(false);
     }
 }

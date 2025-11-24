@@ -1,4 +1,5 @@
 // 1.21.10	-999999999-01-01T00:00:00	Mod of Doom and Despair/Block Loot Tables
+e5c721613a791ee2c3877725f1e131cfd9afb194 data/modad/loot_table/blocks/enderite_ore.json
 f77f484cd31836916f5d83555dca3da2f167e844 data/modad/loot_table/blocks/gabbro.json
 0925a7443df1f05d9ea9b9b3070b5227a61e6e97 data/modad/loot_table/blocks/gabbro_brick_slab.json
 2b7b2c30c82baa4fd6e76f5ea4e4f72dfe9481af data/modad/loot_table/blocks/gabbro_brick_stairs.json
@@ -23,6 +24,7 @@ f8ac5f8df8dcc290c4dc863a554e411222396199 data/modad/loot_table/blocks/gypsum_til
 1040774711a216044fd8450d9b007562f40e9fcc data/modad/loot_table/blocks/gypsum_tile_wall.json
 aba1c40d15bea66d89d83ca39b491444af7d5534 data/modad/loot_table/blocks/gypsum_tiles.json
 7ab097585be5c2d6e28d81aa0890a2c56dfd327d data/modad/loot_table/blocks/gypsum_wall.json
+5be5bdcec91d5226c8763b8e6cd8c2fe5d586858 data/modad/loot_table/blocks/harvester.json
 408e18087be36d1f16b6b4bb3eaa34a80a368638 data/modad/loot_table/blocks/jadeite.json
 ddd7f53eca4a2846de830573682ffdc1009b0046 data/modad/loot_table/blocks/jadeite_brick_slab.json
 b136c70ff716330545c16ce7a1cd9d3c3bf4a031 data/modad/loot_table/blocks/jadeite_brick_stairs.json
